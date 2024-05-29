@@ -1,0 +1,560 @@
+\documentclass[dvipdfmx]{report} % 文章の形式を設定
+\usepackage[margin=2.5cm]{geometry} % 書式の空白を設定
+\usepackage[utf8]{inputenc} % 文字コードをUTF-8に設定
+\usepackage{hyperref} % 目次にリンクを付けるため
+\usepackage{lipsum} % ダミーテキスト用
+\usepackage{tcolorbox} % 枠を利用するため
+\usepackage{amsmath} % \begin{aligned}で連立方程式を表示するため
+\usepackage{bm} % ベクトルを太字で表示するため
+\usepackage{graphicx} % 画像を表示するため
+\usepackage{tensor} % テンソルを記載するため
+
+\title{勉強したこと(雑記)}
+\author{大豆生田 幹}
+\date{}
+
+\begin{document}
+
+\maketitle % タイトルの作成
+\tableofcontents % 目次の作成
+
+\chapter{2024 05/15}
+% =================================
+% chapter 1
+% =================================
+
+\section{特殊相対論}
+
+% 特殊相対論の復習
+\subsection{ガリレイ変換}
+ある慣性系$O$と、その系と比較して$x$軸方向に$V(m/s)$で進む慣性系$O'$を考える。\\
+すると、$O$での座標$(x, y, z)$と$O'$での座標$(x', y', z')$の関係は以下のようになる。\\
+\begin{eqnarray}
+    x' = x - Vt \\
+    y' = y \\
+    z' = z
+\end{eqnarray}
+このような変換をガリレイ変換という。\\
+この変換は、運動方程式
+$$F_x = m\ddot{x}$$
+を不変にする。
+
+\subsection{ローレンツ変換}
+時刻$t_0$で$(x_1,y_1,z_1)$を出発する光は\\
+時刻$t_1$で$(x_2,y_2,z_2)$に到達する。\\
+このことから、
+$$( c(t_1-t_0) )^2 = (x_1-x_0)^2 + (y_1-y_0)^2 + (z_1-z_0)^2$$
+が成り立つ。\\
+どの慣性系においても光速度$c$が一定であれば、この等式は常に成り立つはずである。\\
+そこで、この量を$s_{12}$と置き、世界間隔と呼ぶ。\\
+$$s_{12} = (x_1-x_0)^2 + (y_1-y_0)^2 + (z_1-z_0)^2 - (c(t_1-t_0))^2$$
+\\
+座標が$(t,x,y,z)$で表される系をミンコフスキー時空と呼び、\\
+この系の変換で世界間隔を不変にするものをローレンツ変換という。\\
+\\
+ある慣性系$O$と、その系と比較して$x$軸方向に$V(m/s)$で進む慣性系$O'$を考える。\\
+すると、$O$での座標$(t, x, y, z)$と$O'$での座標$(t', x', y', z')$の関係は以下のようになる。\\
+\begin{eqnarray}
+    x' = \frac{x - Vt}{\sqrt{1 - \frac{V^2}{c^2}}} \\
+    y' = y \\
+    z' = z \\
+    t' = \frac{t - \frac{Vx}{c^2}}{\sqrt{1 - \frac{V^2}{c^2}}}
+\end{eqnarray}
+このような変換をローレンツ変換という。\\
+以下の式を計算すれば、ローレンツ変換が世界間隔を不変にしていることがわかる。
+$$
+    (c(t_1-t_0))^2 - (x_1-x_0)^2 =
+        c^2 \Biggl{(}\frac{t_1- \frac{Vx_1}{c^2}}{\sqrt{1-\frac{V^2}{c^2}}} - \frac{t_0- \frac{Vx_0}{c^2}}{\sqrt{1-\frac{V^2}{c^2}}} \Biggr{)} ^2 -
+        \Biggl{(}\frac{x_1 - Vt_1}{\sqrt{1-\frac{V^2}{c^2}}}-\frac{x_0 - Vt_0}{\sqrt{1-\frac{V^2}{c^2}}} \Biggr{)}^2
+$$
+
+\section{
+    オイラーラグランジュ方程式の導出
+}
+システムの数学的なモデルを「作用」と呼び、これを具体的に考える。\\
+作用は関数を入力すると実数を返すような関数になっており、汎関数という。\\
+力学の原理は「作用が最小となる運動が実現する」というものである。\\
+$$S[q]=\int^{b}_{a}{L\bigl{(}q(t),\dot{q}(t)\bigr{)}dt}$$
+この定積分はいつ最も小さく条件を探す。\\
+\\
+ある関数形$q$で$S[q]$が最小となるとき、$q$の形を少し変形したとしても$S$の値はほとんど変化しないことに注目する。\\
+十分に小さい量（2次以上を無視できる）$\epsilon$、任意の関数$f(t)$を用いて、$q$から無限小だけ変形した関数$\tilde{q}$を考える。\\
+$$
+\tilde{q}(t)=q(t)+\epsilon f(t)
+$$
+この時、$f(t)$は$a < f < b$以外で$0$とする。\\
+$S[\tilde q]-S[q]$の値を考えると
+$$
+S[\tilde q]- S[q] = \int^{b}_{a}
+{ L \bigl{(}\tilde q(t), \dot{\tilde q}(t)\bigr{)} - L\bigl{(}q(t), \dot{q}(t)\bigr{)}dt}
+$$
+$$
+= \int^{b}_{a}
+{ \bigl{(} L\bigl{(}q(t)+\epsilon f(t), \dot{q}(t)+\epsilon \dot{f}(t)\bigr{)} - L\bigl{(}q(t), \dot{q}(t)\bigr{)} \bigr{)}dt}
+$$
+
+ここで、2変数関数のテイラー展開を思い出す
+\begin{tcolorbox}[title=2変数関数のテイラー展開]
+    2変数関数$F(x,y)$について、$(a,b)$周りでのテイラー展開は以下のようになる。
+    $$
+    F(x,y) = F(a,b) + \frac{\partial F}{\partial x}|_{x=a}(x-a) + \frac{\partial F}{\partial y}|_{y=b}(y-b) +
+    $$
+    $$
+    \frac{1}{2!}\frac{\partial^2 F}{\partial x^2}|_{x=a}(x-a)^2 + \frac{\partial^2 F}{\partial x \partial y}|_{x=a,y=b}(x-a)(y-b) + \frac{1}{2!}\frac{\partial^2 F}{\partial y^2}|_{y=b}(y-b)^2 + \cdots
+    $$
+\end{tcolorbox}
+これを使い、$\epsilon$の2乗以上の項を無視すると、
+$$
+S[\tilde q]- S[q] = \int^{b}_{a}
+{ \bigl{(} \frac{\partial L}{\partial q}\epsilon f +  \frac{\partial L}{\partial \dot{q}}\epsilon \dot{f} \bigr{)} dt }
+$$
+これを部分積分すると
+$$
+= \epsilon \int_{a}^{b}{ \bigl{(} \frac{\partial L}{\partial q} - \frac{d}{dt} (\frac{\partial L}{\partial \dot{q}}) \bigr{)} f dt} + 
+\epsilon \int_{a}^{b}{ \frac{d}{dt} \bigl{(} \frac{\partial L}{\partial \dot{q}} f \bigr{)} dt}
+$$
+$a < f < b$以外で$0$としていたことを思い出すと、
+$$
+\frac{\partial L}{\partial q} - \frac{d}{dt} (\frac{\partial L}{\partial \dot{q}}) = 0
+$$
+
+\section{
+    エネルギー保存則の導出
+}
+$p_i = \frac{\partial L}{\partial \dot{q_i}}$として、\\
+エネルギーを
+$$
+E = \sum_{i=1}^{n}{p_i \dot{q_i} - L}
+$$
+と定義する。\\
+これが時間に依存しないことを示す。\\
+$E$を時間で微分すると、
+$$
+\frac{dE}{dt} =
+\sum_{i=1}^{n}
+{\bigl{(} \dot{p_i} \dot{q_i} + p_i \ddot{q_i} \bigr{)} } -
+\biggl{(}
+\sum_{i=1}^{n}{ \frac{\partial{L}}{\partial{q_i}} \dot{q_i} } +
+\sum_{i=1}^{n}{ \frac{\partial{L}}{\partial{\dot{q_i}}} \ddot{q_i} } + 
+\frac{\partial{L}}{\partial{t}}
+\biggr{)}
+$$
+$$
+= \sum_{i=1}^{n}{\biggl{(}
+\dot{q_i}\bigl{(} \dot{p_i} - \frac{\partial{L}}{\partial{q_i}} \bigr{)} +
+\ddot{q_i}\bigl{(} p_i - \frac{\partial{L}}{\partial{\dot{q_i}}} \bigr{)} -
+\frac{\partial{L}}{\partial{t}}
+\biggr{)}}
+$$
+ここで、オイラーラグランジュ方程式
+$$
+\dot{p_i} = \frac{\partial{L}}{\partial{q_i}}
+$$
+より、
+$$
+\dot{E} = - \frac{\partial{L}}{\partial{t}}
+$$
+つまり、エネルギーが保存することは、ラグラジアンの形が時間に依存しないことによる。
+
+
+\chapter{2024 05/22}
+% =================================
+% chapter 2
+% =================================
+
+\section{
+    特殊相対論
+}
+\subsection{
+    アインシュタイン収縮
+}
+静止した慣性系$O$で静止したペンの長さを世界間隔で測る。\\
+ここで、簡単のため座標は$(ct, x)$のみを考える。\\
+ペンの片端を$(0, 0)$と置くと、もう片端の位置が$(0, L)$となっている。\\
+この時、世界間隔は
+$$s^2 = - (0-0)^2 + (L-0)^2 = L^2$$
+となり、ペンの長さは$L$とわかる。\\
+続いて、系$O$と比較して$x$軸方向に$V(m/s)$で進む慣性系$O'$ペンの長さを世界間隔で測る。\\
+この時、ペンの片端を$(0, 0)$と置くと、もう片端の位置が変化する。\\
+ミンコフスキー時空図で見ると、ペンのもう片端の位置は
+\begin{equation}
+    \left\{ \,
+        \begin{aligned}
+        & ct = \frac{V}{c} x \\
+        & x = l \\
+        \end{aligned}
+    \right.
+\end{equation}
+の交点になる。\\
+この交点は$(\frac{V}{c} l, l)$となっている。\\
+この時、世界間隔は
+$$s^2 = - \left( \frac{V}{c} l - 0 \right) ^2 + (l-0)^2 = l^2 \biggl{(} 1- \biggl{(} \frac{V}{c} \biggr{)}^2 \biggr{)}$$
+となっている。\\
+以上のことから、速度$V$で進む系では、静止した系と比べてモノの長さが
+$$\sqrt{1 - \biggl{(} \frac{V}{c} \biggr{)}^2}$$
+倍されることがわかる。\\
+
+\section{
+    ビリアル定理
+}
+運動量$\bm{p}$ 位置$\bm{r}$ の物質が多くある系において、
+$$
+G = \sum_{i}{\bm{p_i} \cdot \bm{r_i}}
+$$
+という量$G$を考える。\\
+この量を時間$t$で微分すると
+$$\frac{dG}{dt} = \sum_{i} \dot{ \bm{r_i} } \cdot \bm{p_i} + \sum_{i} \bm{r_i} \cdot \dot{ \bm{p_i} }$$
+
+\begin{tcolorbox}
+第1項 ($T$は運動エネルギー)\\
+\begin{eqnarray*}
+ \sum_{i} \dot{ \bm{r_i} } \cdot \bm{p_i} &=& \sum_{i}  m \dot{ \bm{r_i} } \cdot  \dot{ \bm{r_i} }\\
+ &=& 2T
+\end{eqnarray*}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+第2項
+$$
+\sum_{i} \bm{r_i} \cdot \dot{ \bm{p_i} } = \sum_{i} \bm{F_i} \cdot \bm{r_i}
+$$
+\end{tcolorbox}
+\noindent
+より、
+$$
+\frac{dG}{dt} = 2T + \sum_{i} \bm{F_i} \cdot \bm{r_i}
+$$
+ここで、$0 \sim \tau (s)$までの平均値を考えると
+$$
+\frac{1}{\tau}\int_{0}^{\tau} \frac{dG}{dt} dt = 2<T> + <\sum_{i} \bm{F_i} \cdot \bm{r_i}>
+$$
+この左辺について
+$$
+\frac{1}{\tau} \int_{0}^{\tau} \frac{dG}{dt} dt = \frac{1}{\tau} \biggl{(} G(\tau) - G(0) \biggr{)}
+$$
+より、運動が周期的、もしくは位置と速度が全ての質点に対して有限の値を持てば($G$に上限があれば)、$0$にできるので
+\begin{equation}
+<T> = -\frac{1}{2} <\sum_{i} \bm{F_i} \cdot \bm{r_i}>
+\end{equation}
+この右辺を具体的に求めるために、まずは系全体のポテンシャルエネルギーを考える
+$$
+U = \frac{1}{2}\sum_{i} \sum_{i \neq j} V( | \bm{r_i} - \bm{r_j} | ) 
+$$
+(重複した部分があるので$\frac{1}{2}$がつく)\\
+ここで、2体の相互作用によるポテンシャルが$V \propto | \bm{r_i} - \bm{r_j} |^n$のように書ける時\\
+比例定数$a$として
+$$
+V(a | \bm{r_i} - \bm{r_j} | ) = a^n V( | \bm{r_i} - \bm{r_j} | ) 
+$$
+と書き直せる。\\
+同様に
+\begin{eqnarray}
+	U(a | \bm{r_i} - \bm{r_j} |)  &=& \frac{1}{2}\sum_{i} \sum_{i \neq j} V(a | \bm{r_i} - \bm{r_j} | ) \nonumber \\
+	&=& \frac{a^n}{2}\sum_{i} \sum_{i \neq j} V( | \bm{r_i} - \bm{r_j} | ) \nonumber \\
+	&=& a^n U( | \bm{r_i} - \bm{r_j} | ) 
+\end{eqnarray}
+ここで、$U(a | \bm{r_i} - \bm{r_j} |)$の$a$微分を考える。
+\begin{tcolorbox}
+\begin{eqnarray*}
+	\frac{ \partial U(a | \bm{r_i} - \bm{r_j} |)}{ \partial a} &=& \sum_{k} \frac{\partial a\bm{r_k} }{\partial a}
+	\frac{ \partial }{ \partial a\bm{r_k} } U(a | \bm{r_i} - \bm{r_j} |)\\
+	&=& \sum_{k} \bm{r_k} \cdot \biggl{(}  \frac{\partial}{\partial a \bm{r_k}} U(a | \bm{r_i} - \bm{r_j} |) \biggr{)}\\
+	&=& - \sum_{k} \bm{r_k} \cdot \bm{F_k}
+\end{eqnarray*}
+\end{tcolorbox}
+同様の微分を$(2,3)$の結果を使って計算すると
+\begin{tcolorbox}
+\begin{eqnarray*}
+	\frac{ \partial U(a | \bm{r_i} - \bm{r_j} |)}{ \partial a} &=& a^n U( | \bm{r_i} - \bm{r_j} | ) \\
+	&=& na^{n-1} U( | \bm{r_i} - \bm{r_j} | )
+\end{eqnarray*}
+\end{tcolorbox}
+よって、$a=1$の時は、上記と$(2,2)$より
+$$
+<T> = \frac{1}{2} n <U>
+$$
+これにより、系全体の運動エネルギーとポテンシャルの、時間において平均的な関係が導かれた。
+
+\section{
+   ケプラー問題
+}
+
+\subsection{
+運動を理解するための式の導出
+}
+
+\includegraphics[width=.60\columnwidth]{./images/two_body_initial.png}\\
+\noindent
+質量$m_1$、質量$m_2$の2つの物質が相互作用しながらどのように運動するかを考える。\\
+図のような状態を想定すると、
+\begin{eqnarray*}
+	\bm{r_1} &=& - \frac{m_2}{m_1+m_2} \bm{r}\\
+	\bm{r_2} &=& \frac{m_1}{m_1+m_2} \bm{r}
+\end{eqnarray*}
+系自体の運動エネルギーが
+$$ \frac{1}{2} (m_1+m_2) \dot{ \bm{R} }^2 $$
+$m_1$、$m_2$それぞれの運動エネルギーが
+\begin{eqnarray*}
+	\frac{1}{2} m_1 \biggl{(} - \frac{m_2}{m_1+m_2} \biggr{)}^2  \dot{ \bm{r} }\\
+	\frac{1}{2} m_2 \biggl{(} \frac{m_1}{m_1+m_2} \biggr{)}^2  \dot{ \bm{r} }
+\end{eqnarray*}
+よって、全体の運動エネルギーは
+$$
+T = \frac{1}{2} (m_1+m_2) \dot{ \bm{R} }^2 + \frac{1}{2} \biggl{(} \frac{m_1m_2}{m_1+m_2} \biggr{)}^2 \dot{ \bm{r} }^2
+$$
+ここで、系と同じ速度で動く座標系で考えると$\dot{ \bm{R} }= 0$で\\
+$$m = \frac{m_1m_1}{m_1+m_2}$$
+を導入すると
+$$T = \frac{1}{2} m \dot{ \bm{r} }^2$$
+これを極座標に変換し、さらにこの運動のラグラジアンを考える。\\
+2物質の相互作用によるエネルギー$V(r)$とおくと\\
+\begin{eqnarray*}
+	L = \frac{1}{2} m ( \dot{r}^2 + r^2 \dot{ \theta }^2 ) - V(r)
+\end{eqnarray*}
+\begin{tcolorbox}
+$r$についてオイラーラグランジュ方程式を考えて\\
+\begin{eqnarray}
+	\frac{ \partial L }{ \partial r } - \frac{d}{dt} \biggl{(} \frac{\partial L}{\partial \dot{r}}  \biggr{)} &=& 0 \nonumber \\
+	mr \dot{\theta}^2 - \frac{ \partial V }{ \partial r } - m \ddot{r} &=& 0
+\end{eqnarray}
+\end{tcolorbox}
+\begin{tcolorbox}
+$\theta$についてもオイラーラグランジュ方程式を考えて\\
+$$
+\frac{ \partial L }{ \partial \theta } - \frac{d}{dt} \biggl{(} \frac{\partial L}{\partial \dot{\theta}}  \biggr{)} = 0
+$$
+ここで、$\frac{ \partial L }{ \partial \theta } = 0$より、
+\begin{eqnarray}
+	mr^2\dot{ \theta } = l = const.
+\end{eqnarray}
+\end{tcolorbox}
+\begin{tcolorbox}
+エネルギー保存則より、即座に
+\begin{eqnarray}
+	\frac{1}{2} m \dot{r}^2 + \biggl{(} \frac{1}{2} \frac{l^2}{mr^2} + V(r) \biggr{)} = E = const.
+\end{eqnarray}
+\end{tcolorbox}
+
+\subsection{
+ケプラー問題の解
+}
+$(2.5)$、$(2.6)$式を用いて、実際にケプラー問題を解いてみる。\\
+$$ \frac{1}{2} \frac{l^2}{mr^2} + V(x) = V' $$
+とおくと、$(2.5)$より
+$$ \frac{dr}{dt} = \sqrt{ \frac{2(E-V')}{m} } $$
+(2.6)より
+$$ \frac{d\theta}{dt} = \frac{l}{mr^2}$$
+よって
+$$
+\frac{dr}{d\theta} = \frac{ r^2 \sqrt{2m(E-V')} }{l}
+$$
+以上より、ケプラー問題は以下の積分を解くことに帰着された。
+\begin{tcolorbox}
+\begin{eqnarray*}
+	\theta = \int_{r_0}^{r} \frac{l}{r^2 \sqrt{2m(E-V')} } dr + \theta'
+\end{eqnarray*}
+\end{tcolorbox}
+\noindent
+この問題は$V(x) = - \frac{k}{r}$のとき、解くことができるので、実際にやってみる。\\
+$V'$を展開し、$\mu = \frac{1}{r}$とおくと
+$$ \theta = \int_{\mu_0}^{\mu} \frac{1}{ \sqrt{ -\biggl{(} \mu - \frac{mk}{l} \biggr{)}^2 + \biggl{(} \frac{mk}{l} \biggr{)}^2 \biggl{(} 1 + \frac{2E}{mk^2} \biggr{)} } } d\mu + \theta'$$
+$\alpha = \frac{l}{mk}$、$\beta = \sqrt{ 1 + \frac{2E}{mk^2} }$とおくと
+\begin{eqnarray*}
+    \theta &=& \int_{\mu_0}^{\mu}
+    \frac{1}{ \sqrt{ -\left( \mu - \frac{1}{\alpha} \right)^2 + \left( \frac{\beta}{\alpha} \right)^2 } }
+    d\mu + \theta' \\
+    &=& \int_{\mu_0}^{\mu}
+    \frac{1}{ \frac{\beta}{\alpha} \sqrt{ 1 - \left( \frac{ \mu - \frac{1}{\alpha} }{ \frac{\beta}{\alpha} } \right)^2 } }
+    d\mu + \theta'
+\end{eqnarray*}
+$\cos{\gamma} = \left( \frac{ \mu - \frac{1}{\alpha} }{ \frac{\beta}{\alpha} } \right) $とおくと
+\begin{eqnarray*}
+    \theta -  \theta' &=& \int_{\gamma_0}^{\gamma} - d\gamma + \theta' \\
+    &=& \gamma - \gamma '
+\end{eqnarray*}
+$\gamma_0 = 0$になるような$r_0$を基準に考えれば
+\begin{eqnarray*}
+    \theta - \theta' &=& - \gamma \\
+    &=& - \cos^{-1} \left( \frac{ \mu - \frac{1}{\alpha} }{ \frac{\beta}{\alpha} } \right) \\
+    \frac{\beta}{\alpha} \cos{(\theta - \theta')} &=& \mu - \frac{1}{\alpha} \\
+    \frac{mk}{l} \sqrt{ 1 + \frac{2E}{mk^2} } \cos{(\theta - \theta')} &=& \frac{1}{r} - \frac{mk}{l}
+\end{eqnarray*}
+したがって、最終的には
+\begin{tcolorbox}
+\begin{eqnarray*}
+	\frac{1}{r} = \frac{mk}{l} \left( 1 + \sqrt{ 1 + \frac{2E}{mk^2} } \cos{( \theta - \theta' )} \right)
+\end{eqnarray*}
+\end{tcolorbox}
+\noindent
+と求めることができた。
+
+
+\chapter{2024 05/29}
+% =================================
+% chapter 3
+% =================================
+
+\section{
+    測地線方程式の導出
+}
+一般の空間上での任意の2点$ P_1$と$P_2$を結ぶ最短経路を考える。\\
+これは、あらゆる可能な経路の中からその長さが最小となるものを取り出せば良い。\\
+まずは一般の経路$S$を考える。
+$$
+S = \int_{P_1}^{P_2} {ds}
+$$
+パラメータ$\lambda$を用いて
+\begin{eqnarray*}
+S &=& \int_{\lambda_1}^{\lambda_2} \frac{ ds }{ d\lambda } d\lambda \\
+&=& \int_{\lambda_1}^{\lambda_2} d\lambda \sqrt{ g_{\mu \upsilon}(x) \frac{ dx^{\mu} }{ d\lambda }\frac{ dx^{\upsilon} }{ d\lambda } }
+\end{eqnarray*}
+作用が最小になる点でオイラーラグランジュ方程式を得るので、
+$$
+L\left( x^\mu, \frac{ dx^\mu }{ d\lambda } \right) = \sqrt{ g_{\mu \upsilon}(x) \frac{ dx^{\mu} }{ d\lambda }\frac{ dx^{\upsilon} }{ d\lambda } }
+$$
+とおけば、任意の$\alpha$に対して
+$$
+\frac{ \partial L }{ \partial x^\alpha } - \frac{ d }{ d \lambda } \frac{ \partial L }{ \partial \dot{x}^\alpha } = 0
+$$
+が成り立つ。
+$$f = g_{\mu \upsilon}(x) d \dot{x}^{\mu} d \dot{x}^{\upsilon} $$
+とおくと
+\begin{eqnarray}
+\frac{ \partial L }{ \partial x^\alpha } &=& \frac{ \partial L }{ \partial f } \frac{ \partial f }{ \partial x^\alpha } \nonumber \\
+&=& \frac{ g_{\mu \upsilon , \alpha} \dot{x^\mu} \dot{x^\upsilon} }{ 2\sqrt{ g_{\mu \upsilon} \dot{x^\mu} \dot{x^\upsilon} } }
+\end{eqnarray}
+\begin{eqnarray}
+\frac{ d }{ d\lambda } \frac{ \partial L }{ \partial \dot{x}^\alpha } &=& \frac{d}{d \lambda} \left( \frac{1}{2} f^{ - \frac{1}{2} } \right) \left( \frac{ g_{\mu \upsilon} \dot{x^\mu} \dot{x^\upsilon} }{ \partial \dot{x}^\alpha } \right) \nonumber \\ 
+&=& \frac{d}{d \lambda} \left( \frac{1}{2} f^{ - \frac{1}{2} } \right) \left( g_{\mu \upsilon} \tensor{\delta}{^\mu_\alpha} \dot{x}^\upsilon + g_{\mu \upsilon} \tensor{\delta}{^\upsilon_\alpha} \dot{x}^\mu \right)\nonumber \\
+&=& \frac{d}{d\lambda} \left( \frac{ g_{\alpha \upsilon}\dot{x}^{\upsilon} }{ \sqrt{g_{\mu \upsilon}\dot{x}^{\upsilon}  \dot{x}^{\upsilon} } } \right)
+\end{eqnarray}
+$(3,1)$$(3,2)$より、オイラーラグランジュ方程式は
+$$
+ \frac{ g_{\mu \upsilon , \alpha} \dot{x^\mu} \dot{x^\upsilon} }{ 2\sqrt{ g_{\mu \upsilon} \dot{x^\mu} \dot{x^\upsilon} } } - \frac{d}{d\lambda} \left( \frac{ g_{\alpha \upsilon}\dot{x}^{\upsilon} }{ \sqrt{g_{\mu \upsilon}\dot{x}^{\upsilon}  \dot{x}^{\upsilon} } } \right) = 0
+$$
+と書き換えられる。\\
+$h = g_{\mu \upsilon}\dot{x}^{\upsilon}  \dot{x}^{\upsilon}$とおくと
+\begin{eqnarray*}
+ \frac{ g_{\mu \upsilon , \alpha} \dot{x^\mu} \dot{x^\upsilon} }{ 2\sqrt{ g_{\mu \upsilon} \dot{x^\mu} \dot{x^\upsilon} } } - \left( \frac{1}{2} h^{- \frac{3}{2}} \right) \dot{h} g_{\alpha \upsilon} \dot{x}^{\upsilon} - h^{- \frac{1}{2}} g_{\alpha \upsilon} \ddot{x}^{\upsilon} - h^{- \frac{1}{2}} g_{\alpha \upsilon, l} \dot{x}^l \dot{x}^{\upsilon} &=& 0 \nonumber \\
+\end{eqnarray*}
+$h^{\frac{1}{2}}g^{\epsilon \alpha}$をかけると
+\begin{eqnarray*}
+ \frac{1}{2} g^{\epsilon \alpha} g_{\mu \upsilon , \alpha} \dot{x^\mu} \dot{x^\upsilon} - 
+\left( \frac{1}{2} h^{-1} \right) \dot{h} g^{\epsilon \alpha} g_{\alpha \upsilon} \dot{x}^{\upsilon} - g^{\epsilon \alpha} g_{\alpha \upsilon} \ddot{x}^{\upsilon} - g^{\epsilon \alpha} g_{\alpha \upsilon, l} \dot{x}^l \dot{x}^{\upsilon} &=& 0 \nonumber \\
+\ddot{x}^{\epsilon} + \frac{1}{2} \dot{x^\mu} \dot{x^\upsilon} g^{\epsilon \alpha} \left( g_{\alpha \upsilon, l} + g_{\alpha l, \upsilon} - g_{\mu \upsilon , \alpha} \right) &=&
+- \left( \frac{1}{2} h^{-1} \right) \dot{h} g^{\epsilon \alpha} g_{\alpha \upsilon} \dot{x}^{\upsilon}
+\end{eqnarray*}
+ここで、適切な間隔$\lambda$を用いると、$\dot{h} = 0$となるので
+\begin{eqnarray*}
+\ddot{x}^{\epsilon} + \frac{1}{2} \dot{x^\mu} \dot{x^\upsilon} g^{\epsilon \alpha} \left( g_{\alpha \upsilon, l} + g_{\alpha l, \upsilon} - g_{\mu \upsilon , \alpha} \right) &=& 0
+\end{eqnarray*}
+クリストッフェル記号を導入すると
+\begin{eqnarray*}
+\ddot{x}^{\epsilon} + \tensor{\Gamma}{^{\alpha}_{l \upsilon}} \dot{x}^l \dot{x}^{\upsilon} &=& 0
+\end{eqnarray*}
+\begin{tcolorbox}
+\begin{eqnarray*}
+\frac{ \partial ^2 {x}^{\epsilon} }{ \partial \lambda^2 } + \tensor{\Gamma}{^{\alpha}_{l \upsilon}} \frac{ \partial x^l }{ \partial \lambda } \frac{ \partial x^{\upsilon} }{ \partial \lambda } &=& 0
+\end{eqnarray*}
+これが測地線方程式である。
+\end{tcolorbox}
+
+\section{
+    クリストッフェル記号
+}
+あるベクトル場において、位置$x^i$でのベクトル$A^{i}(x)$と、そこから$\delta x^i$だけズレた位置でのベクトル$A^{i}(x+\delta x)$を比較することを考える。\\
+しかし、無限小といえども異なる2点でのベクトルの値をそのまま比較することには幾何学的な意味がないため、この比較には座標普遍な方法が必要である。\\
+その方法が並行移動である。\\
+ベクトル$A^{i}(x)$を$\delta x^i$だけズレた位置に並行移して得られるベクトルを以下のように定義する。
+$$
+\tilde{A}^{i} (x+\delta x) := A^{i}(x) - \tensor{\Gamma}{^i_{jk}}(x) A^{j}(x) \delta x^{k}
+$$
+ここで、現れる係数$\tensor{\Gamma}{^i_{jk}}$を接続と呼ぶ。
+\subsection{
+	座標変換に対応した接続の変換
+}
+まずは座標が$x$から$\bar x$に変換した際の接続の変換を考える。\\
+すると、並行移動は以下のように定義される。
+$$
+\tilde{ \bar{A} }^{l} (\bar{x}+\delta \bar{x}) := \bar{A}^{l}(\bar{x}) - \tensor{ \bar{\Gamma} }{^l_{mn}}(\bar{x}) \bar{A}^{m}(\bar{x}) \delta \bar{x}^{n}
+$$
+$\bar{A}^l$と$\tilde{ \bar{A} }^l$がそれぞれ反変ベクトルとして変換することを考慮すると
+\begin{tcolorbox}
+\begin{eqnarray}
+\tilde{ \bar{A} }^{l} (\bar{x}+\delta \bar{x}) = \left. \frac{\partial \bar{x}^l }{ \partial x^i } \right|_{x+\delta x} \tilde{A}^i(x+\delta x)
+\end{eqnarray}
+ここで
+\begin{eqnarray*}
+\left. \frac{\partial \bar{x}^l }{ \partial x^i } \right|_{x+\delta x} = \frac{ \partial \bar{x}^l }{ \partial x^i } + \frac{ \partial \left( \frac{ \partial \bar{x}^l }{ \partial x^i } \right)  }{ \partial x^k }\delta x^k + ...
+\end{eqnarray*}
+\end{tcolorbox}
+\begin{tcolorbox}
+\begin{eqnarray}
+\bar{A}^{l} (\bar{x}) = \frac{\partial \bar{x}^l }{ \partial x^i } A^i(x)
+\end{eqnarray}
+\end{tcolorbox}
+$\delta \bar{x}^n = \frac{d\bar{x}^n}{dt}$とおけば、$\delta \bar{x}^n$反変ベクトルと考えることができるので
+\begin{tcolorbox}
+\begin{eqnarray}
+\delta \bar{x}^n = \frac{\partial \bar{x}^n}{\partial x^k} \delta x^k(x)
+\end{eqnarray}
+\end{tcolorbox}
+$(3.3),(3.4),(3.5)$と並行移動の定義より\\
+\begin{eqnarray*}
+\left( \frac{ \partial \bar{x}^l }{ \partial x^j } + \frac{ \partial^2 \bar{x}^l }{ \partial x^k \partial x^j }\delta x^k + ... \right) \left( A^j - \tensor{\Gamma}{^i_{jk}} A^j(x) \delta x^k \right) = \\
+\frac{ \partial \bar{x}^l }{ \partial x^i }A^i(x) - \tensor{\bar{ \Gamma }}{^l_{mn}} \left( \frac{\partial \bar{x}^m}{\partial x^i} A^i(x) \right) \left( \frac{\partial \bar{x}^n}{\partial x^k} \delta x^k \right)
+\end{eqnarray*}
+$\delta x^k$がある項に注目すると、
+\begin{eqnarray*}
+\frac{\partial^2 \bar{x}^l}{\partial x^k \partial x^j} \delta x^k A^j(x) - \tensor{\Gamma}{^i_{jk}} \frac{\partial \bar{x}^l}{\partial x^i}A^j(x) \delta x^k = \\
+- \tensor{\bar{\Gamma}}{^l_{mn}} \frac{\partial \bar{x}^m}{\partial x^j} \frac{\partial \bar{x}^n}{\partial x^k}\delta x^k A^j(x)
+\end{eqnarray*}
+両辺に$\frac{\partial x^i}{\partial \bar{x}^l}$をかけると
+\begin{tcolorbox}
+\begin{eqnarray*}
+\frac{\partial^2 \bar{x}^l}{\partial x^k \partial x^j} \frac{\partial x^i}{\partial \bar{x}^l} - \tensor{\Gamma}{^i_{jk}} = - \tensor{\bar{\Gamma}}{^l_{mn}} \frac{\partial \bar{x}^m}{\partial x^j} \frac{\partial \bar{x}^n}{\partial x^k} \frac{\partial x^i}{\partial \bar{x}^l}
+\end{eqnarray*}
+\end{tcolorbox}
+
+\subsection{
+	対称な接続
+}
+接続の条件として、並行移動によってベクトルの大きさと任意の2つのベクトルのなす角が普遍に保たれることを要求する。\\
+これは任意の2つのベクトルの内積が普遍であることを意味する。\\
+\begin{eqnarray*}
+g_{ij} A^i(x)B^j(x) &=& g_{ij}(x + \delta x) \tilde{A}^i(x+\delta x) \tilde{B}^j(x+\delta x)\\
+&=& (g_{ij} + g_{ij,k}\delta x^k)(A^i(x) - \tensor{\Gamma}{^i_{lk}}A^l(x) \delta x^k) (B^j(x) - \tensor{\Gamma}{^j_{lk}}B^l(x) \delta x^k)\\
+&=& g_{ij} A^i(x)B^j(x) + (g_{ij,k} - g_{lj}\tensor{\Gamma}{^l_{ik}} - g_{il}\tensor{\Gamma}{^l_{jk}} )A^i B^j \delta x^k + O((\delta x)^2)
+\end{eqnarray*}
+これが任意の$A^i, B^j, \delta x^k$に対して成り立つためには
+\begin{eqnarray*}
+ g_{ij,k} - g_{lj}\tensor{\Gamma}{^l_{ik}} - g_{il}\tensor{\Gamma}{^l_{jk}} = 0
+ \end{eqnarray*}
+ ここで、対称な接続
+\begin{eqnarray}
+\tensor{\Gamma}{^l_{jk}} = \tensor{\Gamma}{^l_{kj}}
+\end{eqnarray}
+ を満たす接続のみを考えると
+\begin{eqnarray}
+ g_{ij,k} - g_{jl}\tensor{\Gamma}{^l_{ik}} - g_{il}\tensor{\Gamma}{^l_{jk}} &=& 0\\
+ g_{ik,j} - g_{kl}\tensor{\Gamma}{^l_{ij}} - g_{il}\tensor{\Gamma}{^l_{kj}} &=& 0\\
+ - g_{kj,i} + g_{jl}\tensor{\Gamma}{^l_{ki}} + g_{kl}\tensor{\Gamma}{^l_{ji}} &=& 0
+\end{eqnarray}
+$(3.6), (3.7), (3.8), (3.9)$より
+\begin{tcolorbox}
+\begin{eqnarray*}
+	\tensor{\Gamma}{^i_{jk}} = \frac{1}{2} g^{il} (g_{lj,k} + g_{lk,j} - g_{jk,l})
+\end{eqnarray*}
+\end{tcolorbox}
+
+\chapter{2024 06/05}
+% =================================
+% chapter 4
+% =================================
+
+\section{
+    共変微分
+}
+
+
+\end{document}
