@@ -7,7 +7,7 @@ L = 4
 X_MIN = 0.1
 X_LIM = 100
 Y_MIN = -0.3
-Y_LIM = 1.3
+Y_LIM = 1.8
 
 x = X_MIN:0.01:X_LIM
 
@@ -44,4 +44,4 @@ plot!(plt, x, y_2, line=:dash, color="#2f4f4f", label=nothing)
 plot!(plt, x, y_3, line=:dash, color="#006400", label=nothing)
 plot!(plt, x, y_total, line=:solid, color=:red, label=nothing, linewidth=2)
 
-savefig("../images/schwarzschild/02.png")
+savefig("../../images/schwarzschild/02.png")
