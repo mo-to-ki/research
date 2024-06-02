@@ -44,4 +44,4 @@ plot!(plt, x, y_2, line=:dash, color="#2f4f4f", label=nothing)
 plot!(plt, x, y_3, line=:dash, color="#006400", label=nothing)
 plot!(plt, x, y_total, line=:solid, color=:red, label=nothing, linewidth=2)
 
-savefig("../images/schwarzschild/01.png")
+savefig("../../images/schwarzschild/01.png")
