@@ -455,11 +455,10 @@ $h^{\frac{1}{2}}g^{\epsilon \alpha}$をかけると
 \begin{eqnarray*}
 \ddot{x}^{\epsilon} + \tensor{\Gamma}{^{\alpha}_{l \upsilon}} \dot{x}^l \dot{x}^{\upsilon} &=& 0
 \end{eqnarray*}
-\begin{tcolorbox}
+\begin{tcolorbox}[title=測地線方程式]
 \begin{eqnarray*}
 \frac{ \partial ^2 {x}^{\epsilon} }{ \partial \lambda^2 } + \tensor{\Gamma}{^{\alpha}_{l \upsilon}} \frac{ \partial x^l }{ \partial \lambda } \frac{ \partial x^{\upsilon} }{ \partial \lambda } &=& 0
 \end{eqnarray*}
-これが測地線方程式である。
 \end{tcolorbox}
 
 \section{
@@ -544,7 +543,7 @@ g_{ij} A^i(x)B^j(x) &=& g_{ij}(x + \delta x) \tilde{A}^i(x+\delta x) \tilde{B}^j
  - g_{kj,i} + g_{jl}\tensor{\Gamma}{^l_{ki}} + g_{kl}\tensor{\Gamma}{^l_{ji}} &=& 0
 \end{eqnarray}
 $(3.6), (3.7), (3.8), (3.9)$より
-\begin{tcolorbox}
+\begin{tcolorbox}[title=クリストッフェル記号]
 \begin{eqnarray*}
 	\tensor{\Gamma}{^i_{jk}} = \frac{1}{2} g^{il} (g_{lj,k} + g_{lk,j} - g_{jk,l})
 \end{eqnarray*}
@@ -696,7 +695,7 @@ E^2 - \left( - \frac{2M}{r^3} l^2 + \frac{l^2}{r^2} - \frac{2M}{r} + 1 \right) \
 \end{equation*}
 より
 \[f(r) = - \frac{2M}{r^3} l^2 + \frac{l^2}{r^2} - \frac{2M}{r} + 1\]
-を解析することで$E$における$r$の範囲がわかる。\\
+を解析することで$E$における$r$の収まるべき範囲が推測できる。\\
 \begin{equation*}
 \begin{split}
 f \left( \frac{1}{s} \right) = - 2M l^2 s^3 + l^2 s^2 - 2M s + 1\\
@@ -710,13 +709,19 @@ f' \left( \frac{1}{s} \right) = - 6M l^2 s^2 + 2 l^2 s - 2M
     \centering
     \includegraphics[width=0.5\columnwidth]{./images/schwarzschild/01.png}
     \caption{$D>0$}
-    \label{fig:schwarzschild}
+    \label{01}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\columnwidth]{./images/schwarzschild/02.png}
+    \caption{$D=0$}
+    \label{02}
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\columnwidth]{./images/schwarzschild/03.png}
     \caption{$D<0$}
-    \label{fig:schwarzschild}
+    \label{03}
 \end{figure}\noindent
 ======================\\
 ======================\\

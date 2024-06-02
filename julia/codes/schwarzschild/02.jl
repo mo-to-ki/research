@@ -2,12 +2,12 @@ using Plots
 
 # settings
 M = 1
-L = 4
+L = sqrt(12)
 
 X_MIN = 0.1
-X_LIM = 100
-Y_MIN = -0.3
-Y_LIM = 1.8
+X_LIM = 50
+Y_MIN = 0.75
+Y_LIM = 1.15
 
 x = X_MIN:0.01:X_LIM
 
@@ -22,19 +22,14 @@ plt = plot(
     # yticks=false,
 )
 
-hline!(plt, [0, 100] , [0, 0], line=:dot, color=:black, label=nothing, linewidth=0.5)
+hline!(plt, [1, 100] , [1, 0], line=:dot, color=:black, label=nothing, linewidth=0.5)
 
 y_1 = [ -2 * M * L^2 / x^3 for x in x]
 y_2 = [ L^2 / x^2 for x in x]
 y_3 = [ - 2 * M / x for x in x]
 y_total = y_1 + y_2 + y_3 .+ 1
 
-index = findfirst(x -> x == 12, x)
-tmp_y = y_total[index]
-println(tmp_y)
-hline!(plt, [0, 100] , [tmp_y, tmp_y], line=:dot, color=:black, label=nothing, linewidth=0.5)
-
-index = findfirst(x -> x == 4, x)
+index = findfirst(x -> x == 6, x)
 tmp_y = y_total[index]
 println(tmp_y)
 hline!(plt, [0, 100] , [tmp_y, tmp_y], line=:dot, color=:black, label=nothing, linewidth=0.5)
