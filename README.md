@@ -38,5 +38,6 @@ $M=1$ $l=1$ で plot
 
 ___
 ## 参考文献
-ブラックホール関連
-https://webspace.science.uu.nl/~hooft101/lectures/blackholes/BH_lecturenotes.pdf 
+
+ブラックホール関連  
+https://webspace.science.uu.nl/~hooft101/lectures/blackholes/BH_lecturenotes.pdf  

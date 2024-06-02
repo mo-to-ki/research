@@ -7,8 +7,10 @@
 \usepackage{amsmath} % \begin{aligned}で連立方程式を表示するため
 \usepackage{bm} % ベクトルを太字で表示するため
 \usepackage{graphicx} % 画像を表示するため
+\usepackage{float} % 画像正しい位置で表示するため
 \usepackage{tensor} % テンソルを記載するため
 \usepackage{multicol} % 複数段落を作成するため
+\usepackage{amsmath} % 数式の記述を行うため
 
 \title{勉強したこと(雑記)}
 \author{大豆生田 幹}
@@ -434,7 +436,7 @@ $$
  \frac{ g_{\mu \upsilon , \alpha} \dot{x^\mu} \dot{x^\upsilon} }{ 2\sqrt{ g_{\mu \upsilon} \dot{x^\mu} \dot{x^\upsilon} } } - \frac{d}{d\lambda} \left( \frac{ g_{\alpha \upsilon}\dot{x}^{\upsilon} }{ \sqrt{g_{\mu \upsilon}\dot{x}^{\upsilon}  \dot{x}^{\upsilon} } } \right) = 0
 $$
 と書き換えられる。\\
-$h = g_{\mu \upsilon}\dot{x}^{\upsilon}  \dot{x}^{\upsilon}$とおくと
+$h = g_{\mu \upsilon}\dot{x}^{\mu}  \dot{x}^{\upsilon}$とおくと
 \begin{eqnarray*}
  \frac{ g_{\mu \upsilon , \alpha} \dot{x^\mu} \dot{x^\upsilon} }{ 2\sqrt{ g_{\mu \upsilon} \dot{x^\mu} \dot{x^\upsilon} } } - \left( \frac{1}{2} h^{- \frac{3}{2}} \right) \dot{h} g_{\alpha \upsilon} \dot{x}^{\upsilon} - h^{- \frac{1}{2}} g_{\alpha \upsilon} \ddot{x}^{\upsilon} - h^{- \frac{1}{2}} g_{\alpha \upsilon, l} \dot{x}^l \dot{x}^{\upsilon} &=& 0 \nonumber \\
 \end{eqnarray*}
@@ -554,15 +556,184 @@ $(3.6), (3.7), (3.8), (3.9)$より
 % =================================
 
 \section{
+	シュワルツシルト時空における軌道の予測
+}
+\subsection{
+	具体的な測地線方程式の導出
+}
+
+\[
+ds^2 = -A(r)dt^2 + B(r)dr^2 + r^2d \theta^2 + r^2 \sin^2 \theta d\phi^2
+\]
+線素が以上のように表される、曲がった時空を考える。\\
+測地線方程式を思い出すと
+\[
+\ddot{x}^{\epsilon} + \tensor{\Gamma}{^{\alpha}_{l \upsilon}} \dot{x}^l \dot{x}^{\upsilon} = 0
+\]
+このようになっているので、クリストッフェル記号の具体的な値を求めたい。\\
+クリストッフェル記号は計量の微分で表現できたので、まずは計量の値を求める。\\
+\[
+x^{\mu} = ( t, r, \theta, \phi )
+\]
+とおくと、計量のゼロでない値は
+\begin{equation*}
+\begin{split}
+g_{00} &= -A(r)\\
+g_{11} &= B(r)\\
+g_{22} &= r^2\\
+g_{33} &= r^2 \sin^2 \theta
+\end{split}
+\end{equation*}
+となっている。\\
+続いて、計量の微分でゼロにならないものを考えると
+\begin{equation*}
+\begin{split}
+g_{00,1} &= -A'(r)\\
+g_{11,1} &= B'(r)\\
+g_{22,1} &= 2r\\
+g_{33,1} &= 2r \sin^2 \theta\\
+g_{33,1} &= 2 r^2 \sin \theta \cos \theta
+\end{split}
+\end{equation*}
+最後に、クリストッフェル記号の値を具体的に求める。\\
+クリストッフェル記号は以下のように与えられていたことを思い出すと
+\[
+\tensor{\Gamma}{^i_{jk}} = \frac{1}{2} g^{il} (g_{lj,k} + g_{lk,j} - g_{jk,l})
+\]
+ゼロでない値は以下のようになっている。
+\begin{align*}
+\tensor{\Gamma}{^0_{01}} &= \frac{1}{2} \frac{1}{A(r)} A'(r) &
+\tensor{\Gamma}{^1_{00}} &= \frac{1}{2} \frac{1}{B(r)} A'(r)\\
+\tensor{\Gamma}{^1_{11}} &= \frac{1}{2} \frac{1}{B(r)} B'(r) &
+\tensor{\Gamma}{^1_{22}} &= - \frac{r}{B(r)}\\
+\tensor{\Gamma}{^1_{33}} &= - \frac{r \sin^2 \theta}{B(r)} &
+\tensor{\Gamma}{^2_{21}} &= \frac{1}{r}\\
+\tensor{\Gamma}{^2_{33}} &= - \sin \theta \cos \theta &
+\tensor{\Gamma}{^3_{31}} &= \frac{1}{r}\\
+\tensor{\Gamma}{^3_{32}} &= \frac{ \cos \theta }{ \sin \theta }
+\end{align*}
+これを考慮して、測地線方程式
+\[
+\ddot{x}^i = \tensor{\Gamma}{^i_{jk}} \dot{x}^j \dot{x}^k
+\]
+を考えると\\
+$i=0$では
+\begin{equation}
+\ddot{t} + \frac{A'(r)}{A(r)} \dot{t} \dot{r} = 0
+\end{equation}
+$i=1$では
+\begin{equation}
+\ddot{r} + \frac{A'(r)}{2B(r)} \dot{t}^2 + \frac{B'(r)}{2B(r)} \dot{r}^2 - \frac{r}{B(r)}\dot{\theta}^2 - \frac{r\sin^2 \theta}{B(r)} \dot{\phi}^2= 0
+\end{equation}
+$i=2$では
+\begin{equation}
+\ddot{\theta} + \frac{2}{r} \dot{r} \dot{\theta} - \sin \theta \cos \theta \dot{\phi}^2 = 0
+\end{equation}
+$i=3$では
+\begin{equation}
+\ddot{\phi} + \frac{2}{r} \dot{r} \dot{\phi} + 2 \frac{\cos \theta}{\sin \theta} \dot{\theta} \dot{\phi} = 0
+\end{equation}
+
+\subsection{
+	軌道の予測
+}
+導出した測地線方程式から、この時空における物体の運動を予測したい。\\
+ただ、簡単に解くことはできないので、まずは解析的に軌道を予測する。\\
+この時空は球対称なので、まずは運動が$\theta = \frac{\pi}{2}$に収まっていると仮定してみる。\\
+ すると\\
+ $(4.1)$は
+\begin{equation}
+\begin{split}
+\ddot{t} + \frac{A'(r)}{A(r)} \dot{t} \dot{r} &= 0\\
+A(r) \ddot{t} + A'(r) \dot{t} \dot{r} &= 0\\
+\frac{d}{d \lambda} \left( A(r) \dot{t} \right) &= 0\\
+A(r) \dot{t} &= E = const.\\
+\end{split}
+\end{equation}
+$(4.4)$は
+\begin{equation}
+\begin{split}
+\ddot{\phi} + \frac{2}{r} \dot{r} \dot{\phi} &= 0\\
+r^2 \ddot{\phi} + 2 r \dot{r} \dot{\phi} &= 0\\
+\frac{d}{d \lambda} \left( r^2 \dot{\phi} \right) &= 0\\
+r^2 \dot{\phi} &= l = const.
+\end{split}
+\end{equation}
+ここで、測地線方程式を導出した際に仮定した拘束条件
+\[
+\frac{ d }{ d \lambda }\left( g_{\mu \upsilon}\dot{x}^{\mu}  \dot{x}^{\upsilon} \right) = 0
+\]
+を思い出して
+\[
+g_{\mu \upsilon}\dot{x}^{\mu}  \dot{x}^{\upsilon} = -1
+\]
+とおく。するとこれは
+\begin{equation}
+\begin{split}
+-A(r) \dot{t}^2 + B(r) \dot{r}^2 + r^2 \dot{\theta}^2 + r^2 \sin^2 \theta \dot{\phi}^2 &= -1\\
+- \frac{E^2}{A(r)} + B(r) \dot{r}^2 + \frac{l^2}{r^2} &= -1
+\end{split}
+\end{equation}
+と変形できる。さらに
+\[
+A(r) = 1- \frac{2M}{r}
+\]
+\[
+B(r) = \frac{1}{1- \frac{2M}{r}}
+\]
+の場合について考えると$(4.7)$は
+\begin{tcolorbox}
+\[
+\dot{r}^2 = E^2 - \left( - \frac{2M}{r^3} l^2 + \frac{l^2}{r^2} - \frac{2M}{r} + 1 \right)
+\]
+\end{tcolorbox}
+\noindent
+この式から軌道を予測する。\\
+\begin{equation*}
+\begin{split}
+E^2 - \left( - \frac{2M}{r^3} l^2 + \frac{l^2}{r^2} - \frac{2M}{r} + 1 \right) \geq 0
+\end{split}
+\end{equation*}
+より
+\[f(r) = - \frac{2M}{r^3} l^2 + \frac{l^2}{r^2} - \frac{2M}{r} + 1\]
+を解析することで$E$における$r$の範囲がわかる。\\
+\begin{equation*}
+\begin{split}
+f \left( \frac{1}{s} \right) = - 2M l^2 s^3 + l^2 s^2 - 2M s + 1\\
+f' \left( \frac{1}{s} \right) = - 6M l^2 s^2 + 2 l^2 s - 2M
+\end{split}
+\end{equation*}
+より、関数$f$は判別式
+\[D= \left( l - \sqrt{12}M \right) \left( l + \sqrt{12}M \right) \]
+によって分類できる。
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\columnwidth]{./images/schwarzschild/01.png}
+    \caption{$D>0$}
+    \label{fig:schwarzschild}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\columnwidth]{./images/schwarzschild/03.png}
+    \caption{$D<0$}
+    \label{fig:schwarzschild}
+\end{figure}\noindent
+======================\\
+======================\\
+======================\\
+======================\\
+ここあとでかく\\
+======================\\
+======================\\
+======================\\
+======================\\
+\section{
     共変微分
 }
 
 \section{
 	シュワルツシルト時空における測地線の予測
 }
-\begin{multicols}{2}
-\includegraphics[width=0.9\columnwidth]{./images/schwarzschild/01.png}\\
-\includegraphics[width=0.9\columnwidth]{./images/schwarzschild/02.png}\\
-\end{multicols}
+
 
 \end{document}
