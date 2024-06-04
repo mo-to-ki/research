@@ -15,7 +15,10 @@
 佐々木 節  
 一般相対論
 
-柴田 大 (Masuru Sibata)  
+広江 克彦  
+[共変微分](https://eman-physics.net/relativity/co_dif.html)
+
+柴田 大  
 東京大学 宇宙科学2 講義公開資料  
 [幾何学とその表現の仕方:線素](https://ea.c.u-tokyo.ac.jp/astro/Members/shibata/kougi1.pdf)  
 [ニュートン重力理論の概観](https://ea.c.u-tokyo.ac.jp/astro/Members/shibata/kougi2.pdf)  
