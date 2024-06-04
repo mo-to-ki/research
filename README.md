@@ -16,7 +16,9 @@
 一般相対論
 
 広江 克彦  
-[共変微分](https://eman-physics.net/relativity/co_dif.html)
+EMANの物理学  
+[共変微分](https://eman-physics.net/relativity/co_dif.html)  
+[リーマン曲率](https://eman-physics.net/relativity/riemann.html)  
 
 柴田 大  
 東京大学 宇宙科学2 講義公開資料  
