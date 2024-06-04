@@ -17,8 +17,10 @@
 
 広江 克彦  
 EMANの物理学  
+[相対論](https://eman-physics.net/relativity/contents.html)  
 [共変微分](https://eman-physics.net/relativity/co_dif.html)  
 [リーマン曲率](https://eman-physics.net/relativity/riemann.html)  
+[ビアンキの恒等式](https://eman-physics.net/relativity/bianchi.html)  
 
 柴田 大  
 東京大学 宇宙科学2 講義公開資料  

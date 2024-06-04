@@ -21,4 +21,3 @@
 \contentsline {subsection}{\numberline {4.1.1} 具体的な測地線方程式の導出}{15}{subsection.4.1.1}%
 \contentsline {subsection}{\numberline {4.1.2} 軌道の予測}{16}{subsection.4.1.2}%
 \contentsline {section}{\numberline {4.2} 共変微分}{19}{section.4.2}%
-\contentsline {section}{\numberline {4.3} シュワルツシルト時空における測地線の予測}{19}{section.4.3}%

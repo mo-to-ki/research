@@ -736,9 +736,37 @@ f' \left( \frac{1}{s} \right) = - 6M l^2 s^2 + 2 l^2 s - 2M
 \section{
     共変微分
 }
-
-\section{
-	シュワルツシルト時空における測地線の予測
-}
+反変ベクトルの偏微分に関しての座標変換を考えると
+\begin{equation*}
+\begin{split}
+\frac{ \partial A^i(x) }{ \partial x^j } &= \frac{ \partial \bar{x}^l }{ \partial x^j } \frac{ \partial }{ \partial \bar{x}^l } \left( \frac{ \partial x^i }{ \partial \bar{x}^k } \bar{A}^k  \right)\\
+&= \frac{\partial \bar{x}^l}{\partial{x}^j} \frac{\partial{x}^i}{\partial \bar{x}^k} \frac{\partial \bar{A}^k}{\partial \bar{x}^l} + \frac{\partial \bar{x}^l}{\partial x^j} \frac{\partial^2 x^i}{\partial \bar{x}^l \partial \bar{x}^k} \bar{A}^k
+\end{split}
+\end{equation*}
+共変ベクトルの偏微分に関しての座標変換を考えると
+\begin{equation*}
+\begin{split}
+\frac{ \partial A_i(x) }{ \partial x^j } &= \frac{ \partial \bar{x}^l }{ \partial x^j } \frac{ \partial }{ \partial \bar{x}^l } \left( \frac{ \partial \bar{x}^k }{ \partial x^i } \bar{A}_k  \right)\\
+&= \frac{\partial \bar{x}^l}{\partial{x}^j} \frac{\partial \bar{x}^k}{\partial x^i} \frac{\partial \bar{A}^k}{\partial \bar{x}^l} + \frac{\partial \bar{x}^l}{\partial x^j} \frac{\partial^2 \bar{x}^k}{\partial \bar{x}^l \partial x^i} \bar{A}^k
+\end{split}
+\end{equation*}
+以上より、これらはテンソルとしての変換性を持たない。\\
+これは、無限小といえども異なる2点における座標は一般に異なっており、異なる2点でのベクトルを比較することは幾何学意味がないからである。\\
+但し、並行移動を定義したことで、無現小異なる2点におけるベクトルを同一点に並行移動することによって、ベクトルの微分を同一点でのベクトルの差として表現することができる。\\
+この無現小の差をとる演算子を$D$で表し、これがテンソルになるように、反変ベクトル、共変ベクトルそれぞれに対する共変微分を以下のように定義する。
+\begin{tcolorbox}[title=反変ベクトルに対する共変微分]
+\begin{equation*}
+\begin{split}
+\tensor{A}{^i_{;k}} \equiv \nabla_k A^i = \tensor{A}{^i_{,k}} + \Gamma^{i}_{jk}A^j
+\end{split}
+\end{equation*}
+\end{tcolorbox}
+\begin{tcolorbox}[title=共変ベクトルに対する共変微分]
+\begin{equation*}
+\begin{split}
+\tensor{B}{_{i}_{;k}} \equiv \nabla_k B_i = \tensor{B}{_i_{,k}} + \Gamma^{i}_{jk}B_j
+\end{split}
+\end{equation*}
+\end{tcolorbox}
 
 \end{document}
