@@ -768,5 +768,16 @@ f' \left( \frac{1}{s} \right) = - 6M l^2 s^2 + 2 l^2 s - 2M
 \end{split}
 \end{equation*}
 \end{tcolorbox}
+最後に、一般のテンソルに対しての共変微分は、上のベクトルの場合を一般化して
+\begin{tcolorbox}[title=一般のテンソルに対する共変微分]
+\begin{equation*}
+\begin{split}
+\tensor{T}{^{i_1, i_2...i_k}_{j_1, j_2...j_l;q}} &= \tensor{T}{^{i_1, i_2...i_k}_{j_1, j_2...j_l,q}}\\
+&+\sum^{k}_{m=1} \tensor{\Gamma}{^{i_m}_{pq}} \tensor{T}{^{i_1,i_2...i_{m-1},p,i_{m+1}...i_k}_{j_1, j_2...j_l}}\\
+&+ \sum^{l}_{m=1} \tensor{\Gamma}{^{p}_{i_m q}} \tensor{T}{^{i_1,i_2...i_k}_{j_1, j_2...j_{m-1},p,j_{m+1}...j_l}}
+\end{split}
+\end{equation*}
+\end{tcolorbox}
+以上のように与えられる。
 
 \end{document}
