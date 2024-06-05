@@ -780,4 +780,53 @@ f' \left( \frac{1}{s} \right) = - 6M l^2 s^2 + 2 l^2 s - 2M
 \end{tcolorbox}
 以上のように与えられる。
 
+\section{
+    リーマン曲率テンソル
+}
+等価原理により、どんな時空であれ局所的にはクリストッフェル記号がゼロになるような座標が存在する。\\
+そこで、時空の曲がり具合を表現する共変的な量の導出が望ましい。\\
+これがリーマンテンソルである。\\
+曲がった時空上の4点$P, Q_1, Q_2, R$を考える。\\
+点$P$から$\delta_1 x^i$だけズレた点を$Q_1$\\
+点$P$から$\delta_2 x^i$だけズレた点を$Q_2$\\
+点$Q_1$から$\delta_2 x^i$だけズレており、点$Q_2$から$\delta_1 x^i$だけズレてた点を$R$とする。\\
+$P$で与えられたベクトル$A^i$を\\
+$P \to Q_1 \to R$の順に並行移動したベクトルを
+\[ \tilde{A}^i\left(R\right) \]
+$P \to Q_2 \to R$の順に並行移動したベクトルを
+\[ \tilde{A}'^i\left(R\right) \]
+とおき、このベクトルのズレを空間の曲率と考えると、\\
+これは$\delta_1 x^i, \delta_2 x^i$が無限小の場合、そのそれぞれ比例し、$A^i$にも比例していると考えられるので、\\
+比例係数$\tensor{R}{^i_{jkl}}$を用いて
+\begin{equation*}
+\begin{split}
+\delta A^i:=\tilde{A}^i\left(R\right)-\tilde{A}'^i\left(R\right)=R^i{}_{jkl} A^j \delta_1 x^k \delta_2 x^{l}
+\end{split}
+\end{equation*}
+とかけるはずである。\\
+この比例係数がリーマンテンソルである。\\
+\begin{equation}
+\begin{split}
+\tilde{A}^i\left(R\right) =& \tilde{A}^i\left(Q_1\right)-\Gamma^i{}_{jk}\left(Q_1\right) \tilde{A}^j\left(Q_1\right) \delta_2 x^k \\
+=& A^i-\Gamma^i{}_{jk} A^j\left(\delta_1 x^k+\delta_2 x^k\right) \\
+& -\left(\Gamma^i{}_{j l, k}-\Gamma^i{}_{n l} \Gamma^n{}_{jk}\right) A^j \delta_1 x^k \delta_2 x^{l}
+\end{split}
+\end{equation}
+\begin{equation}
+\begin{split}
+\tilde{A}'^i\left(R\right)= & \tilde{A}^i\left(Q_2\right)-\Gamma^i{}_{jk}\left(Q_2\right) \tilde{A}^j\left(Q_2\right) \delta_1 x^k \\
+= & A^i-\Gamma^i{}_{jk} A^j\left(\delta_1 x^k+\delta_2 x^k\right) \\
+& -\left(\Gamma^i{}_{jk, l}-\Gamma^i{}_{nk} \Gamma^n{}_{jl}\right) A^j \delta_1 x^k \delta_2 x^{l}
+\end{split}
+\end{equation}
+$(4.8), (4.9)$より
+\begin{tcolorbox}[title=リーマンテンソル]
+\begin{equation*}
+\begin{split}
+\tensor{R}{^i_{jkl}} = \tensor{\Gamma}{^i_{jl,k}} - \tensor{\Gamma}{^i_{jk,l}} + \tensor{\Gamma}{^i_{nk}}\tensor{\Gamma}{^n_{jl}} - \tensor{\Gamma}{^i_{nl}}\tensor{\Gamma}{^n_{jk}}
+\end{split}
+\end{equation*}
+\end{tcolorbox}\noindent
+となっていることがわかる。
+
 \end{document}
