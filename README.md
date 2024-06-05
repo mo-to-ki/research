@@ -3,7 +3,7 @@
 ## LaTeX
 
 勉強したことのまとめ  
-[study summary](./tex/study/study.pdf)  
+[study summary](./tex/study_summary/study_summary.pdf)  
 
 卒研としての資料  
 [未着手](./)  
