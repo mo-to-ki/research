@@ -307,7 +307,7 @@ $$
 T = \frac{1}{2} (m_1+m_2) \dot{ \bm{R} }^2 + \frac{1}{2} \biggl{(} \frac{m_1m_2}{m_1+m_2} \biggr{)}^2 \dot{ \bm{r} }^2
 $$
 ここで、系と同じ速度で動く座標系で考えると$\dot{ \bm{R} }= 0$で\\
-$$m = \frac{m_1m_1}{m_1+m_2}$$
+$$m = \frac{m_1m_2}{m_1+m_2}$$
 を導入すると
 $$T = \frac{1}{2} m \dot{ \bm{r} }^2$$
 これを極座標に変換し、さらにこの運動のラグラジアンを考える。\\
@@ -723,16 +723,7 @@ f' \left( \frac{1}{s} \right) = - 6M l^2 s^2 + 2 l^2 s - 2M
     \includegraphics[width=0.5\columnwidth]{./images/schwarzschild/03.png}
     \caption{$D<0$}
     \label{03}
-\end{figure}\noindent
-======================\\
-======================\\
-======================\\
-======================\\
-ここあとでかく\\
-======================\\
-======================\\
-======================\\
-======================\\
+\end{figure}
 \section{
     共変微分
 }
@@ -829,4 +820,67 @@ $(4.8), (4.9)$より
 \end{tcolorbox}\noindent
 となっていることがわかる。
 
+\chapter{2024 06/12}
+% =================================
+% chapter 5
+% =================================
+
+\section{
+	ビアンキの恒等式
+}
+リーマンテンソルを導出したが、この添字には重要な関係性があるので、それを導出する。\\
+\begin{equation*}
+\begin{split}
+	\nabla_a [\nabla_b, \nabla_c] A_i = \nabla_a \tensor{R}{^i_{abc}} A_i - \tensor{R}{^j_{abc}} \nabla_j A_i\\
+	[\nabla_b, \nabla_c] \nabla_a A_i = \tensor{R}{^j_{abc}} \nabla_j A_i - \tensor{R}{^j_{abc}} \nabla_a A_j\\
+\end{split}
+\end{equation*}
+以上より、
+\begin{equation}
+\begin{split}
+	2 \left[ \nabla_a [\nabla_b, \nabla_c] \right] A_i = \nabla_a \tensor{R}{^i_{abc}} A_i - \tensor{R}{^j_{abc}} \nabla_j A_i\\
+\end{split}
+\end{equation}
+同様にして
+\begin{equation}
+\begin{split}
+	2 \left[ \nabla_b [\nabla_c, \nabla_a] \right] A_i = \nabla_b \tensor{R}{^i_{bca}} A_i - \tensor{R}{^j_{bca}} \nabla_j A_i\\
+\end{split}
+\end{equation}
+\begin{equation}
+\begin{split}
+	2 \left[ \nabla_c [\nabla_a, \nabla_b] \right] A_i = \nabla_c \tensor{R}{^i_{cab}} A_i - \tensor{R}{^j_{cab}} \nabla_j A_i\\
+\end{split}
+\end{equation}
+ここで、以下のような変換を計算すると、ゼロになることが確かめられるので
+\begin{equation*}
+\begin{split}
+	\left[ a[b,c] \right] + \left[ b[c,a] \right] + \left[ c[a,b] \right]
+	&= \left[ a, \frac{1}{2}(bc - cb) \right] + \left[ b, \frac{1}{2}(ca - ac) \right] + \left[ c, \frac{1}{2}(ab - ba) \right]\\
+	&= \frac{1}{4} \left( (abc - acb - bca + cba) + (bca - bac - cab + acb) + (cab - cba - abc + bac) \right)\\
+	&= 0
+\end{split}
+\end{equation*}
+以上より、
+\begin{equation*}
+\begin{split}
+	\left( \nabla_a \tensor{R}{^i_{abc}} + \nabla_b \tensor{R}{^i_{bca}} + \nabla_c \tensor{R}{^i_{cab}} \right) A_i - \left( \tensor{R}{^j_{abc}} + \tensor{R}{^j_{bca}} + \tensor{R}{^j_{cab}} \right) \nabla_j A_i = 0
+\end{split}
+\end{equation*}
+この式から
+\begin{tcolorbox}[title=リーマンテンソルの対称性(1)]
+\begin{equation*}
+\begin{split}
+\tensor{R}{^j_{abc}} + \tensor{R}{^j_{bca}} + \tensor{R}{^j_{cab}} = 0
+\end{split}
+\end{equation*}
+\end{tcolorbox}\noindent
+\begin{tcolorbox}[title=ビアンキの恒等式]
+\begin{equation*}
+\begin{split}
+\nabla_a \tensor{R}{^i_{abc}} + \nabla_b \tensor{R}{^i_{bca}} + \nabla_c \tensor{R}{^i_{cab}} = 0
+\end{split}
+\end{equation*}
+\end{tcolorbox}\noindent
+が導かれた。
 \end{document}

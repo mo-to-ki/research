@@ -15,9 +15,12 @@
 佐々木 節  
 一般相対論
 
+Robert M. Wald  
+General Relativity
+
 広江 克彦  
 EMANの物理学  
-[相対論](https://eman-physics.net/relativity/contents.html)  
+[相対性理論](https://eman-physics.net/relativity/contents.html)  
 
 柴田 大  
 東京大学 宇宙科学2 講義公開資料  
