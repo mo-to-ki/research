@@ -4,13 +4,12 @@
 \usepackage{hyperref} % 目次にリンクを付けるため
 \usepackage{lipsum} % ダミーテキスト用
 \usepackage{tcolorbox} % 枠を利用するため
-\usepackage{amsmath} % \begin{aligned}で連立方程式を表示するため
+\usepackage{amsmath} % 数式の記述を行うため
 \usepackage{bm} % ベクトルを太字で表示するため
 \usepackage{graphicx} % 画像を表示するため
 \usepackage{float} % 画像正しい位置で表示するため
 \usepackage{tensor} % テンソルを記載するため
 \usepackage{multicol} % 複数段落を作成するため
-\usepackage{amsmath} % 数式の記述を行うため
 \usepackage{tikz} % 図を作成するため
 
 \title{勉強したこと(雑記)}
@@ -592,7 +591,7 @@ g_{00,1} &= -A'(r)\\
 g_{11,1} &= B'(r)\\
 g_{22,1} &= 2r\\
 g_{33,1} &= 2r \sin^2 \theta\\
-g_{33,1} &= 2 r^2 \sin \theta \cos \theta
+g_{33,2} &= 2 r^2 \sin \theta \cos \theta
 \end{split}
 \end{equation*}
 最後に、クリストッフェル記号の値を具体的に求める。\\
@@ -824,6 +823,55 @@ $(4.8), (4.9)$より
 % =================================
 % chapter 5
 % =================================
+\section{
+	共変微分とリーマンテンソル
+}
+共変微分とリーマンテンソルには以下のような関係性があるので、それを導出する。\\
+\begin{equation*}
+\begin{split}
+	\nabla_a \nabla_b A_i &= \partial_a ( \nabla_b A_i ) - \Gamma^c_{ba}( \nabla_c A_i ) - \Gamma^c_{ia}( \nabla_b A_c ) \\
+	&= \partial_a ( \partial_b A_i - \Gamma^c_{ib} A_c ) \\
+	&\quad - \Gamma^c_{ba}( \partial_c A_i - \Gamma^d_{ic} A_d ) \\
+	&\quad - \Gamma^c_{ia}( \partial_b A_c - \Gamma^d_{cb} A_d ) \\
+	&= \partial_a \partial_b A_i - \partial_a \Gamma^c_{ib} A_c - \Gamma^c_{ib} \partial_a A_c \\
+	&\quad - \Gamma^c_{ba} \partial_c A_i + \Gamma^c_{ba} \Gamma^d_{ic} A_d \\
+	&\quad - \Gamma^c_{ia} \partial_b A_c + \Gamma^c_{ia} \Gamma^d_{cb} A_d \\
+\end{split}
+\end{equation*}
+ここで、以下のような量を考えると
+\begin{equation*}
+\begin{split}
+	( \nabla_a \nabla_b - \nabla_b \nabla_a )A_i 
+	&= \partial_a \partial_b A_i - \partial_b \partial_a A_i \\
+	&\quad - ( \partial_a \tensor{\Gamma}{^c_{ib}} A_c - \partial_b \tensor{\Gamma}{^c_{ia}} A_c ) \\
+	&\quad - ( \tensor{\Gamma}{^c_{ib}} \partial_a A_c - \tensor{\Gamma}{^c_{ia}} \partial_b A_c )\\
+	&\quad - ( \tensor{\Gamma}{^c_{ba}} \partial_c A_i - \tensor{\Gamma}{^c_{ab}} \partial_c A_i ) \\
+	&\quad + ( \tensor{\Gamma}{^c_{ba}} \tensor{\Gamma}{^d_{ic}} A_d - \tensor{\Gamma}{^c_{ab}} \tensor{\Gamma}{^d_{ic}} A_d )\\
+	&\quad - ( \tensor{\Gamma}{^c_{ia}} \partial_b A_c - \tensor{\Gamma}{^c_{ib}} \partial_a A_c ) \\
+	&\quad + ( \tensor{\Gamma}{^c_{ia}} \tensor{\Gamma}{^d_{cb}} A_d - \tensor{\Gamma}{^c_{ib}} \tensor{\Gamma}{^d_{ca}} A_d ) \\
+	&= - \partial_a \tensor{\Gamma}{^c_{ib}} A_c + \partial_b \tensor{\Gamma}{^c_{ia}} A_c \\
+	&\quad + \tensor{\Gamma}{^c_{ia}} \tensor{\Gamma}{^d_{cb}} A_d - \tensor{\Gamma}{^c_{ib}} \tensor{\Gamma}{^d_{ca}} A_d \\
+	&= - \partial_a \tensor{\Gamma}{^d_{ib}} A_d + \partial_b \tensor{\Gamma}{^d_{ia}} A_d \\
+	&\quad + \tensor{\Gamma}{^c_{ia}} \tensor{\Gamma}{^d_{cb}} A_d - \tensor{\Gamma}{^c_{ib}} \tensor{\Gamma}{^d_{ca}} A_d \\
+\end{split}
+\end{equation*}\noindent
+これはリーマンテンソルの定義と一致しているので
+\begin{tcolorbox}[title=共変微分とリーマンテンソルの関係性]
+\begin{equation*}
+\begin{split}
+	( \nabla_a \nabla_b - \nabla_b \nabla_a )A_i = \tensor{R}{^d_{abi}}A_d
+\end{split}
+\end{equation*}
+\end{tcolorbox}\noindent
+\begin{tcolorbox}[title=リーマンテンソルの一般化]
+\begin{equation*}
+\begin{split}
+	( \nabla_a \nabla_b - \nabla_b \nabla_a ) \tensor{T}{^{c_1...c_k}_{d_1...d_k}} &=
+	- \sum^{k}_{i=1} \tensor{R}{_{abe}^{c_i}} \tensor{T}{^{c_1...e...c_k}_{d_1...d_k}} \\
+	&\quad + \sum^{l}_{j=1} \tensor{R}{_{abd_i}^{e}} \tensor{T}{^{c_1...c_k}_{d_1...e...d_k}}
+\end{split}
+\end{equation*}
+\end{tcolorbox}\noindent
 
 \section{
 	ビアンキの恒等式
@@ -831,25 +879,30 @@ $(4.8), (4.9)$より
 リーマンテンソルを導出したが、この添字には重要な関係性があるので、それを導出する。\\
 \begin{equation*}
 \begin{split}
-	\nabla_a [\nabla_b, \nabla_c] A_i = \nabla_a \tensor{R}{^i_{abc}} A_i - \tensor{R}{^j_{abc}} \nabla_j A_i\\
-	[\nabla_b, \nabla_c] \nabla_a A_i = \tensor{R}{^j_{abc}} \nabla_j A_i - \tensor{R}{^j_{abc}} \nabla_a A_j\\
+	\nabla_a (\nabla_b \nabla_c - \nabla_c \nabla_b) A_i &= \nabla_a \tensor{R}{^e_{bci}} A_e\\
+	&= (\nabla_a \tensor{R}{^e_{bci}}) A_e + \tensor{R}{^e_{bci}} (\nabla_a A_d)
+\end{split}
+\end{equation*}
+\begin{equation*}
+\begin{split}
+	(\nabla_b\nabla_c - \nabla_c\nabla_b) \nabla_a A_i &= \tensor{R}{^e_{bca}} \nabla_e A_i + \tensor{R}{^e_{bci}} \nabla_a A_e\\
 \end{split}
 \end{equation*}
 以上より、
 \begin{equation}
 \begin{split}
-	2 \left[ \nabla_a [\nabla_b, \nabla_c] \right] A_i = \nabla_a \tensor{R}{^i_{abc}} A_i - \tensor{R}{^j_{abc}} \nabla_j A_i\\
+	2 \left[ \nabla_a,[\nabla_b, \nabla_c] \right] A_i = (\nabla_a \tensor{R}{^e_{bci}}) A_e - \tensor{R}{^e_{bca}} \nabla_e A_i\\
 \end{split}
 \end{equation}
 同様にして
 \begin{equation}
 \begin{split}
-	2 \left[ \nabla_b [\nabla_c, \nabla_a] \right] A_i = \nabla_b \tensor{R}{^i_{bca}} A_i - \tensor{R}{^j_{bca}} \nabla_j A_i\\
+	2 \left[ \nabla_b,[\nabla_c, \nabla_a] \right] A_i = (\nabla_b \tensor{R}{^e_{cai}}) A_e - \tensor{R}{^e_{cab}} \nabla_e A_i\\
 \end{split}
 \end{equation}
 \begin{equation}
 \begin{split}
-	2 \left[ \nabla_c [\nabla_a, \nabla_b] \right] A_i = \nabla_c \tensor{R}{^i_{cab}} A_i - \tensor{R}{^j_{cab}} \nabla_j A_i\\
+	2 \left[ \nabla_c,[\nabla_a, \nabla_b] \right] A_i = (\nabla_c \tensor{R}{^e_{abi}}) A_e - \tensor{R}{^e_{abc}} \nabla_e A_i\\
 \end{split}
 \end{equation}
 ここで、以下のような変換を計算すると、ゼロになることが確かめられるので
@@ -871,16 +924,134 @@ $(4.8), (4.9)$より
 \begin{tcolorbox}[title=リーマンテンソルの対称性(1)]
 \begin{equation*}
 \begin{split}
-\tensor{R}{^j_{abc}} + \tensor{R}{^j_{bca}} + \tensor{R}{^j_{cab}} = 0
+\tensor{R}{^d_{abc}} + \tensor{R}{^d_{bca}} + \tensor{R}{^d_{cab}} = 0
 \end{split}
 \end{equation*}
 \end{tcolorbox}\noindent
 \begin{tcolorbox}[title=ビアンキの恒等式]
 \begin{equation*}
 \begin{split}
-\nabla_a \tensor{R}{^i_{abc}} + \nabla_b \tensor{R}{^i_{bca}} + \nabla_c \tensor{R}{^i_{cab}} = 0
+\nabla_a \tensor{R}{^e_{abd}} + \nabla_b \tensor{R}{^e_{bcd}} + \nabla_c \tensor{R}{^e_{cad}} = 0
 \end{split}
 \end{equation*}
 \end{tcolorbox}\noindent
 が導かれた。
+
+
+\chapter{2024 06/19}
+% =================================
+% chapter 7
+% =================================
+\section{
+	シュワルツシルト時空の円軌道における角運動量とエネルギー
+}
+シュワルツシルト時空において満たすべき方程式を思い出すと
+\[
+\dot{r}^2 = E^2 - \left( - \frac{2M}{r^3} l^2 + \frac{l^2}{r^2} - \frac{2M}{r} + 1 \right)
+\]
+円軌道における動径方向への速度はゼロなので
+\begin{equation}
+\begin{split}
+E^2 = - \frac{2M}{r^3} l^2 + \frac{l^2}{r^2} - \frac{2M}{r} + 1
+\end{split}
+\end{equation}
+円軌道における動径方向への加速度もゼロなので
+\begin{equation}
+\begin{split}
+0 = - \frac{6M}{r^2} l^2 + \frac{2}{r}l^2 - 2M
+\end{split}
+\end{equation}
+\subsection{
+	エネルギー
+}
+$(6.1)$式より、
+\[
+\left( \frac{E}{M} \right)^2 = \frac{\left( \frac{r}{M} - 2 \right)^2}{ \frac{r}{M} \left( \frac{r}{M} - 3 \right) }
+\]
+\[
+\left( \frac{\partial \left( \frac{E}{M} \right) }{\partial \left( \frac{r}{M} \right)} \right)^2 = \frac{ \left( \frac{r}{M} - 6 \right) \left( \frac{r}{M} - 2 \right) }{ \frac{r}{M} \left( \frac{r}{M} - 3 \right)^2 }
+\]
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\columnwidth]{./images/schwarzschild/09.png}
+    \caption{$\left( \frac{E}{M} \right)^2 - \left( \frac{r}{M} \right)$}
+    \label{}
+\end{figure}
+\subsection{
+	角運動量
+}
+$(6.2)$式より、
+\[
+\left( \frac{l}{M} \right)^2 = \frac{\left( \frac{r}{M} \right)^2}{ \left( \frac{r}{M} \right) - 3 }
+\]
+\[
+\left( \frac{\partial \left( \frac{l}{M} \right) }{\partial \left( \frac{r}{M} \right)} \right)^2 = \frac{r}{M} \frac{ \left( \frac{r}{M} - 6 \right)}{ \left( \frac{r}{M} - 3 \right)^2 }
+\]
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\columnwidth]{./images/schwarzschild/08.png}
+    \caption{$\left( \frac{l}{M} \right)^2 - \left( \frac{r}{M} \right)$}
+    \label{}
+\end{figure}
+\section{
+	円軌道の安定性
+}
+\[
+\frac{l}{M} \geq \sqrt{12}
+\]
+では、2点の$r$で円軌道をとることができる。\\
+この2点$r_{-}, r_{+}$とすると、解析により
+\begin{equation}
+\begin{split}
+3 < \frac{r_{-}}{M} \leq 6 \leq \frac{r_{+}}{M}
+\end{split}
+\end{equation}
+がわかっていた。\\
+円軌道に摂動$\delta r$が加わった際の、動径方向加わる力と加速度を考えると
+\[
+V(r) = - \frac{2M}{r^3} l^2 + \frac{l^2}{r^2} - \frac{2M}{r} + 1
+\]
+とすると、エネルギーと力の関係から
+\begin{equation*}
+\begin{split}
+	\ddot{r} + \delta \ddot{r} &= - V'(r + \delta r)\\
+	&= - V'(r) - V''(r)\delta r - ...
+\end{split}
+\end{equation*}
+今は円軌道をとる$r$について考えているので
+\begin{equation*}
+\begin{split}
+	\ddot{r} &= 0\\
+	V'(r) &=0
+\end{split}
+\end{equation*}
+よって
+\begin{tcolorbox}[title=摂動における微分方程式]
+\begin{equation}
+\begin{split}
+	\delta \ddot{r} = - V''(r)\delta r
+\end{split}
+\end{equation}
+\end{tcolorbox}\noindent
+そこで、$V''(r)$について考えると
+\begin{equation}
+\begin{split}
+	V''(r) &= -\frac{24M}{r^5}l^2 + \frac{6}{r^4}l^2 - \frac{4M}{r^3}\\
+	&= - \frac{12M}{r^5}l^2 + \frac{2}{r^4}l^2 -\frac{2}{r} \left( \frac{6M}{r^4} - \frac{2}{r^3}l^2 + \frac{2M}{r^2} \right)\\
+	&= - \frac{12M}{r^5}l^2 + \frac{2}{r^4}l^2 -\frac{2}{r} V'(r)\\
+	&= - \frac{12M}{r^5}l^2 + \frac{2}{r^4}l^2\\
+	&= - \frac{l^2}{r^4} \left( 12 \frac{M}{r} - 2 \right)\\
+\end{split}
+\end{equation}
+$(6.3)$より\\
+$r_{-}$の円軌道では$V''(r) \leq 0$\\
+$r_{+}$の円軌道では$0 \leq V''(r)$\\
+よって\\
+$r_{-}$の円軌道は不安定\\
+$r_{+}$の円軌道は安定\\
+とわかった。
+\section{
+	古典的な二体問題と相対論で考える二体問題の比較
+}
+
 \end{document}
