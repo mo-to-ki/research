@@ -10,10 +10,11 @@ end
 
 u0 = [1.0, 0.2, 0.0]
 
-tspan = (0.0, 50.0)
+tspan = (0.0, 10.0)
 
 prob = ODEProblem(ode_system!, u0, tspan)
-sol = solve(prob, Tsit5(), saveat=0.1)
+sol = solve(prob, Rosenbrock23(), saveat=0.01, maxiters=10000)
+
 
 t = sol.t
 r = [u[1] for u in sol.u]

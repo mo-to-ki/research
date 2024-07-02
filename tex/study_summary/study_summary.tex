@@ -917,7 +917,7 @@ $(4.8), (4.9)$より
 以上より、
 \begin{equation*}
 \begin{split}
-	\left( \nabla_a \tensor{R}{^i_{abc}} + \nabla_b \tensor{R}{^i_{bca}} + \nabla_c \tensor{R}{^i_{cab}} \right) A_i - \left( \tensor{R}{^j_{abc}} + \tensor{R}{^j_{bca}} + \tensor{R}{^j_{cab}} \right) \nabla_j A_i = 0
+	\left( \nabla_a \tensor{R}{^e_{bcd}} + \nabla_b \tensor{R}{^e_{cad}} + \nabla_c \tensor{R}{^i_{ab}} \right) A_e - \left( \tensor{R}{^j_{abc}} + \tensor{R}{^j_{bca}} + \tensor{R}{^e_{cad}} \right) \nabla_j A_i = 0
 \end{split}
 \end{equation*}
 この式から
@@ -931,7 +931,7 @@ $(4.8), (4.9)$より
 \begin{tcolorbox}[title=ビアンキの恒等式]
 \begin{equation*}
 \begin{split}
-\nabla_a \tensor{R}{^e_{abd}} + \nabla_b \tensor{R}{^e_{bcd}} + \nabla_c \tensor{R}{^e_{cad}} = 0
+\nabla_a \tensor{R}{^e_{bcd}} + \nabla_b \tensor{R}{^e_{cad}} + \nabla_c \tensor{R}{^e_{abd}} = 0
 \end{split}
 \end{equation*}
 \end{tcolorbox}\noindent
@@ -966,15 +966,15 @@ E^2 = - \frac{2M}{r^3} l^2 + \frac{l^2}{r^2} - \frac{2M}{r} + 1
 }
 $(6.1)$式より、
 \[
-\left( \frac{E}{M} \right)^2 = \frac{\left( \frac{r}{M} - 2 \right)^2}{ \frac{r}{M} \left( \frac{r}{M} - 3 \right) }
+E^2 = \frac{\left( \frac{r}{M} - 2 \right)^2}{ \frac{r}{M} \left( \frac{r}{M} - 3 \right) }
 \]
 \[
-\left( \frac{\partial \left( \frac{E}{M} \right) }{\partial \left( \frac{r}{M} \right)} \right)^2 = \frac{ \left( \frac{r}{M} - 6 \right) \left( \frac{r}{M} - 2 \right) }{ \frac{r}{M} \left( \frac{r}{M} - 3 \right)^2 }
+\left( \frac{\partial E }{\partial \left( \frac{r}{M} \right)} \right)^2 = \frac{ \left( \frac{r}{M} - 6 \right) \left( \frac{r}{M} - 2 \right) }{ \frac{r}{M} \left( \frac{r}{M} - 3 \right)^2 }
 \]
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\columnwidth]{./images/schwarzschild/09.png}
-    \caption{$\left( \frac{E}{M} \right)^2 - \left( \frac{r}{M} \right)$}
+    \caption{$E^2 - \left( \frac{r}{M} \right)$}
     \label{}
 \end{figure}
 \subsection{
@@ -1007,32 +1007,42 @@ $(6.2)$式より、
 \end{split}
 \end{equation}
 がわかっていた。\\
-円軌道に摂動$\delta r$が加わった際の、動径方向加わる力と加速度を考えると
 \[
 V(r) = - \frac{2M}{r^3} l^2 + \frac{l^2}{r^2} - \frac{2M}{r} + 1
 \]
-とすると、エネルギーと力の関係から
+とすると
+\[
+\dot{r}^2 = E^2 - V(r)
+\]
+より
 \begin{equation*}
 \begin{split}
-	\ddot{r} + \delta \ddot{r} &= - V'(r + \delta r)\\
-	&= - V'(r) - V''(r)\delta r - ...
+	\frac{d}{d \lambda} \dot{r}^2 &= \frac{d}{d\lambda} \left( E^2 - V(r) \right)\\
+	2 \ddot{r} \dot{r} &= - \dot{r} V'(r)\\
+	\ddot{r} &= - \frac{1}{2}V'(r)
 \end{split}
 \end{equation*}
-今は円軌道をとる$r$について考えているので
+円軌道に摂動$\delta r$が加わった際の、動径方向加わる力と加速度を考えると
 \begin{equation*}
 \begin{split}
-	\ddot{r} &= 0\\
-	V'(r) &=0
+	\ddot{r} + \delta \ddot{r} &= - \frac{1}{2} V'(r + \delta r)\\
+	&= - \frac{1}{2} V'(r) - \frac{1}{2} V''(r)\delta r - ...
 \end{split}
 \end{equation*}
 よって
 \begin{tcolorbox}[title=摂動における微分方程式]
 \begin{equation}
 \begin{split}
-	\delta \ddot{r} = - V''(r)\delta r
+	\delta \ddot{r} = - \frac{1}{2} V''(r)\delta r
 \end{split}
 \end{equation}
 \end{tcolorbox}\noindent
+この微分方程式を解くと
+\begin{equation}
+\begin{split}
+	\delta r = C_1 \exp \left( \lambda \sqrt{-\frac{V''(r)}{2}} \right) + C_2 \exp \left( - \lambda \sqrt{-\frac{V''(r)}{2}} \right)
+\end{split}
+\end{equation}
 そこで、$V''(r)$について考えると
 \begin{equation}
 \begin{split}
@@ -1040,18 +1050,55 @@ V(r) = - \frac{2M}{r^3} l^2 + \frac{l^2}{r^2} - \frac{2M}{r} + 1
 	&= - \frac{12M}{r^5}l^2 + \frac{2}{r^4}l^2 -\frac{2}{r} \left( \frac{6M}{r^4} - \frac{2}{r^3}l^2 + \frac{2M}{r^2} \right)\\
 	&= - \frac{12M}{r^5}l^2 + \frac{2}{r^4}l^2 -\frac{2}{r} V'(r)\\
 	&= - \frac{12M}{r^5}l^2 + \frac{2}{r^4}l^2\\
-	&= - \frac{l^2}{r^4} \left( 12 \frac{M}{r} - 2 \right)\\
+	&= - \frac{2l^2}{r^4} \left( 6 \frac{M}{r} - 1 \right)\\
 \end{split}
 \end{equation}
 $(6.3)$より\\
-$r_{-}$の円軌道では$V''(r) \leq 0$\\
-$r_{+}$の円軌道では$0 \leq V''(r)$\\
-よって\\
-$r_{-}$の円軌道は不安定\\
-$r_{+}$の円軌道は安定\\
-とわかった。
+$r_{-}$の円軌道では$V''(r) \leq 0$なので\\
+\[
+	-\frac{V''(r)}{2} = a^2 \geq 0
+\]
+と置くと
+\begin{equation*}
+\begin{split}
+	\delta r = C_1 \exp \left( \lambda a \right) + C_2 \exp \left( - \lambda a \right)
+\end{split}
+\end{equation*}
+この値は$\lambda$とともに大きくなるので\\
+$r_{-}$の軌道は不安定である。\\
+$r_{+}$の円軌道では$0 \leq V''(r)$なので\\
+\[
+	\frac{V''(r)}{2} = a^2 \geq 0
+\]
+と置くと
+\begin{equation*}
+\begin{split}
+	\delta r &= C_1 \exp \left( i \lambda a \right) + C_2 \exp \left( - i \lambda a \right)\\
+	&= (C_1 + C_2)\cos (\lambda a) + i (C_1 - C_2)\sin (\lambda a)
+\end{split}
+\end{equation*}
+この値は$\lambda$によって周期的に変化するが、$r$の大きさは発散しないので\\
+$r_{+}$の起動は安定である。\\
+\chapter{2024 06/26}
+% =================================
+% chapter 8
+% =================================
 \section{
-	古典的な二体問題と相対論で考える二体問題の比較
+	アインシュタインテンソル
+}
+
+\begin{equation*}
+\begin{split}
+	V(r) = \frac{Gm_1m_2}{r}
+\end{split}
+\end{equation*}
+
+\section{
+	シュワルツシルト時空における光の軌道
+}
+
+\section{
+	ニュートン力学と相対論における二体問題の比較
 }
 
 \end{document}

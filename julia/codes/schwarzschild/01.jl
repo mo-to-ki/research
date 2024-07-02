@@ -5,9 +5,9 @@ M = 1
 L = 4
 
 X_MIN = 0.1
-X_LIM = 30
+X_LIM = 3.
 Y_MIN = 0.75
-Y_LIM = 1.15
+Y_LIM = 1.25
 
 x = X_MIN:0.01:X_LIM
 
