@@ -1,4 +1,4 @@
-This is e-upTeX, Version 3.141592653-p4.1.1-u1.30-230214-2.6 (utf8.euc) (TeX Live 2024) (preloaded format=platex 2024.5.2)  2 JUL 2024 17:34
+This is e-upTeX, Version 3.141592653-p4.1.1-u1.30-230214-2.6 (utf8.euc) (TeX Live 2024) (preloaded format=platex 2024.5.2)  8 JUL 2024 07:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -883,4 +883,4 @@ Here is how much of TeX's memory you used:
  929 hyphenation exceptions out of 8191
  101i,25n,107p,469b,584s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on study_summary.dvi (29 pages, 159424 bytes).
+Output written on study_summary.dvi (29 pages, 159404 bytes).
