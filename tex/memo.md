@@ -110,3 +110,13 @@ T_r = \frac{ 2\pi }{ \frac{V''_G(r)}{2} }  = \frac{ 2\pi }{ \left( \frac{1}{ r\s
 \Delta \phi  &= \frac{ 2\pi }{ \left( \left( \frac{T_r}{T_\phi} \right) - 1 \right)  }\\
 &= 2\pi \left( \frac{ M^2 r^2 }{l^4 \left( \frac{6M}{r} - 1 \right) } - 1\right)
 ```
+
+```tex
+\frac{d}{d\lambda}\left( \frac{\partial L}{\partial \dot{x}^l} \right) - \frac{\partial L}{\partial x^l}
+&= \frac{d}{d\lambda}\left( \frac{ g_{kl} \dot{x}^k }{ \sqrt{- g_{ij} \dot{x}^i\dot{x}^j }} \right)
+- \frac{ \frac{ \partial g_{mn}\dot{x}^m\dot{x}^n }{ \partial x^l } }{ 2\sqrt{ - g_{ij}\dot{x}^i\dot{x}^j } }\\
+&= \frac{d}{d\lambda} \left( g_{kl} \dot{x}^k \right)
+- \frac{1}{2} \frac{ \partial g_{mn} }{ \partial x^l } \dot{x}^m\dot{x}^n\\
+&= g_{kl} \ddot{x}^k - \left( \frac{ \partial g_{nl} }{ \partial x^m } - \frac{1}{2} \frac{ \partial g_{mn} }{ \partial x^l } \right) \dot{x}^m\dot{x}^n\\
+&= 0
+```

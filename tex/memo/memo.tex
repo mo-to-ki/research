@@ -1,0 +1,86 @@
+\documentclass[dvipdfmx]{report} % 文章の形式を設定
+\usepackage[margin=2.5cm]{geometry} % 書式の空白を設定
+\usepackage[utf8]{inputenc} % 文字コードをUTF-8に設定
+\usepackage{hyperref} % 目次にリンクを付けるため
+\usepackage{lipsum} % ダミーテキスト用
+\usepackage{tcolorbox} % 枠を利用するため
+\usepackage{amsmath} % 数式の記述を行うため
+\usepackage{bm} % ベクトルを太字で表示するため
+\usepackage{graphicx} % 画像を表示するため
+\usepackage{float} % 画像正しい位置で表示するため
+\usepackage{tensor} % テンソルを記載するため
+\usepackage{multicol} % 複数段落を作成するため
+\usepackage{tikz} % 図を作成するため
+
+\title{メモ}
+\author{大豆生田 幹}
+\date{}
+
+\begin{document}
+
+
+\begin{equation*}
+\begin{split}
+	V(r) = \frac{Gm_1m_2}{r}
+\end{split}
+\end{equation*}
+
+[\
+\omega^G_{(r)} = \sqrt{ \frac{V''_{G}(r_{+})}{2} } = \frac{l^2}{r_{+}^4}\left( 1 - \frac{6M}{r_{+}} \right)
+\]
+
+[\
+\delta r = \mathrm{C_1} e^{i\omega^{G}_{(r)} \lambda} + \mathrm{C_2} e^{- i\omega^{G}_{(r)} \lambda} 
+\]
+
+[\
+\kappa^{G}_{(r)} = \sqrt{ - \frac{V''_{G}(r_-)}{2} } = \frac{l^2}{r_{-}^4}\left( \frac{6M}{r_{-}} - 1 \right)
+\]
+
+[\
+\frac{r_{-}}{M} &= \frac{\left( \frac{l}{M} \right)^2 - \left( \frac{l}{M} \right)^2 \sqrt{ 1 - \frac{12}{\left( \frac{l}{M} \right)^2} } }{2}
+\]
+
+
+[\
+\sqrt{ 1 - \frac{12}{\left( \frac{l}{M} \right)^2} } \simeq 1 - \frac{6}{ \left( \frac{l}{M} \right)^2 }
+\]
+
+
+\[
+T_r = \frac{2\pi}{\omega^{N}_{(r)}} = \frac{2\pi}{ \left( \frac{M^3}{l^3} \right) }
+\]
+
+\[
+T_r = \frac{2\pi}{\omega^{G}_{(r)}} = \frac{2\pi}{ \left( \frac{1}{ r_{+} \sqrt{r_{+}-3} } \right)\sqrt{1-\frac{6M}{r_{+}}} }
+\]
+
+\[
+T_{\phi} = \frac{2\pi}{\dot{\phi}} = \frac{2\pi}{ \left( \frac{1}{ r_{+} \sqrt{r_{+}-3} } \right) }
+\]
+
+\[
+\mathrm{ G } = 6.674 \times 10^{ -11 } \mathrm{ m }^3 / \mathrm{ kg }\; \mathrm{ s }^2
+\]
+
+\]
+\mathrm{ C } = 2.998 \times 10^{ 8 } \mathrm{ m } / \mathrm{ s }
+\]
+
+\]
+
+[\
+
+\]
+
+[\
+
+\]
+
+[\
+
+\]
+
+
+
+\end{document}
